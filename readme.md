@@ -7,6 +7,6 @@ para la tesis de grado de la Universidad Metropolitana
 titulada **APLICACIÓN DE LA TECNOLOGÍA DE IDENTIFICACIÓN 
 POR RADIOFRECUENCIA EN UN SISTEMA DE PAGO. CASO: UNIMET.**
 
-#####Tutor: Christian Guillen 
+##### Tutor: Christian Guillen 
 
 
