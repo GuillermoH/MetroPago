@@ -28,8 +28,9 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ route('admin.home') }}">
+                        {{--{{ config('app.name', 'Laravel') }}--}}
+                        <img class="navbar-logo" src="{{asset('img/logo-metropago.png')}}" alt="logo Metro Pago">
                     </a>
                 </div>
 
@@ -48,7 +49,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.listUsers') }}">
+                                    <a href="{{ route('admin.createUser') }}">
                                         Agregar
                                     </a>
                                 </li>
@@ -66,7 +67,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.listStores') }}">
+                                    <a href="{{ route('admin.createStore') }}">
                                         Agregar
                                     </a>
                                 </li>

@@ -14,8 +14,8 @@
                         </div>
                     @endif
 
-                    You are logged in as admin!
-                        <a href="{{ route('admin.listUsers') }}">usuarios</a>
+                    <h1>Dashboard de Administrador</h1>
+                    <h3>Aqui van estadisticas y graficos</h3>
                 </div>
             </div>
         </div>

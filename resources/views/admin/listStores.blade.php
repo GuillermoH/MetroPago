@@ -1,14 +1,6 @@
 @extends('layouts.adminApp')
 
 @section('content')
-    @if (session('status'))
-        <div class="container">
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        </div>
-    @endif
-    
 <section id="users" class="top-break">
     <div class="container">
         <div class="row">
@@ -25,6 +17,7 @@
                         <th>Nombre</th>
                         <th>E-mail</th>
                         <th>usuario</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody data-link="row" class="rowlink">
@@ -34,6 +27,17 @@
                             <td>{{ $store->name }}</td>
                             <td>{{ $store->email }}</td>
                             <td>{{ $store->username }} </td>
+                            <td><form action="{{ route('admin.storeDestroy',['user'=>$store->id]) }}" method="post" class="list-buttons">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-default btn-sm" onclick="return confirm('¿Estás seguro que quieres borrar el Negocio?');"><span class="glyphicon glyphicon-remove"></span></button>
+                                </form>
+                                <form action="{{ route('admin.storeDestroy',['user'=>$store->id]) }}" method="post" class="list-buttons">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-default btn-sm" onclick="return confirm('¿Estás seguro que quieres borrar la inversion?');"><span class="glyphicon glyphicon-pencil"></span></button>
+                                </form>
+                            </td>
                         </tr>
 
                     @endforeach
