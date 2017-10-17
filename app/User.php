@@ -31,7 +31,7 @@ class User extends Authenticatable
      * Definicion de relaciones
      */
     public function roles(){
-        return $this->belongsToMany('App\Role', 'user_role','user_id','role_id');
+        return $this->belongsToMany('App\Role', 'user_role','user_id','role_id')->withTimestamps();
     }
 
     public function userPurchase(){

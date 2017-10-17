@@ -27,6 +27,12 @@ Route::group([
     Route::get('/', 'AdminController@index')->name('admin.home');
     Route::get('/users', 'AdminController@listUsers')->name('admin.listUsers');
     Route::get('/stores', 'AdminController@listStores')->name('admin.listStores');
+    Route::delete('/admin/user/{user}', 'AdminController@userDestroy')->name('admin.userDestroy');
+    Route::delete('/admin/store/{user}', 'AdminController@storeDestroy')->name('admin.storeDestroy');
+    Route::get('/admin/user/create', 'AdminController@createUser')->name('admin.createUser');
+    Route::post('/admin/user/store', 'AdminController@storeUser')->name('admin.storeUser');
+    Route::get('/admin/store/create', 'AdminController@createStore')->name('admin.createStore');
+    Route::post('/admin/store/store', 'AdminController@storeStore')->name('admin.storeStore');
 });
 
 Route::group([

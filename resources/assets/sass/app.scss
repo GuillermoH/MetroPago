@@ -7,3 +7,18 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.list-buttons{
+  float: left;
+  padding: 1px 4px;
+}
+
+.navbar-logo{
+  height: 40px;
+  width: auto;
+}
+
+.navbar-brand{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
