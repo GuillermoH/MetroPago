@@ -11,7 +11,7 @@ POR RADIOFRECUENCIA EN UN SISTEMA DE PAGO. CASO: UNIMET.**
 
 ## Correr proyecto
 ##### En un terminal 
-1. `https://github.com/GuillermoH/MetroPago.git`
+1. `git clone https://github.com/GuillermoH/MetroPago.git`
 2. `composer install`
 3. `npm install`
 4. Crear una Base de Datos en MySQL
