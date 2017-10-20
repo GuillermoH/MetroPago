@@ -17,6 +17,7 @@ class CreateDepositsTable extends Migration
             $table->increments('id');
             $table->float('amount', 20, 2);
             $table->string('type');
+            $table->string('reference');
             $table->integer('user_id');
             $table->timestamps();
         });

@@ -25,14 +25,26 @@ Route::group([
     'prefix' => '/admin'
 ],function() {
     Route::get('/', 'AdminController@index')->name('admin.home');
+    /*
+     * User related routes
+     */
     Route::get('/users', 'AdminController@listUsers')->name('admin.listUsers');
+    Route::delete('/user/{user}', 'AdminController@userDestroy')->name('admin.userDestroy');
+    Route::get('/user/create', 'AdminController@createUser')->name('admin.createUser');
+    Route::post('/user/store', 'AdminController@storeUser')->name('admin.storeUser');
+    Route::get('/user/{user}/edit', 'AdminController@editUser')->name('admin.editUser');
+    Route::put('/user/{user}', 'AdminController@updateUser')->name('admin.updateUser');
+
+    Route::post('/user/{user}/deposit', 'AdminController@addFunds')->name('admin.depositUser');
+    /*
+     * Store related routes
+     */
     Route::get('/stores', 'AdminController@listStores')->name('admin.listStores');
-    Route::delete('/admin/user/{user}', 'AdminController@userDestroy')->name('admin.userDestroy');
-    Route::delete('/admin/store/{user}', 'AdminController@storeDestroy')->name('admin.storeDestroy');
-    Route::get('/admin/user/create', 'AdminController@createUser')->name('admin.createUser');
-    Route::post('/admin/user/store', 'AdminController@storeUser')->name('admin.storeUser');
-    Route::get('/admin/store/create', 'AdminController@createStore')->name('admin.createStore');
-    Route::post('/admin/store/store', 'AdminController@storeStore')->name('admin.storeStore');
+    Route::delete('/store/{user}', 'AdminController@storeDestroy')->name('admin.storeDestroy');
+    Route::get('/store/create', 'AdminController@createStore')->name('admin.createStore');
+    Route::post('/store/store', 'AdminController@storeStore')->name('admin.storeStore');
+    Route::get('/store/{user}/edit', 'AdminController@editStore')->name('admin.editStore');
+    Route::put('/store/{user}', 'AdminController@updateStore')->name('admin.updateStore');
 });
 
 Route::group([

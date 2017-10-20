@@ -17,6 +17,7 @@
                         <th>Nombre</th>
                         <th>E-mail</th>
                         <th>usuario</th>
+                        <th>RIF</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -27,16 +28,15 @@
                             <td>{{ $store->name }}</td>
                             <td>{{ $store->email }}</td>
                             <td>{{ $store->username }} </td>
+                            <td>{{ $store->c_id }}</td>
                             <td><form action="{{ route('admin.storeDestroy',['user'=>$store->id]) }}" method="post" class="list-buttons">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-default btn-sm" onclick="return confirm('¿Estás seguro que quieres borrar el Negocio?');"><span class="glyphicon glyphicon-remove"></span></button>
                                 </form>
-                                <form action="{{ route('admin.storeDestroy',['user'=>$store->id]) }}" method="post" class="list-buttons">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-default btn-sm" onclick="return confirm('¿Estás seguro que quieres borrar la inversion?');"><span class="glyphicon glyphicon-pencil"></span></button>
-                                </form>
+                                <div class="list-buttons">
+                                    <a class="btn btn-default btn-sm" href="{{ route('admin.editStore', ["id" => $store->id]) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                </div>
                             </td>
                         </tr>
 

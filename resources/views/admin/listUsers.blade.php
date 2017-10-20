@@ -34,11 +34,14 @@
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-default btn-sm" onclick="return confirm('¿Estás seguro que quieres borrar el usuario?');"><span class="glyphicon glyphicon-remove"></span></button>
                                 </form>
-                                <form action="{{ route('admin.userDestroy',['user'=>$user->id]) }}" method="post" class="list-buttons">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-default btn-sm" onclick="return confirm('¿Estás seguro que quieres borrar la inversion?');"><span class="glyphicon glyphicon-pencil"></span></button>
-                                </form>
+                                <div class="list-buttons">
+                                    <a class="btn btn-default btn-sm" href="{{ route('admin.editUser', ["id" => $user->id]) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                </div>
+                                {{--<form action="{{ route('admin.userDestroy',['user'=>$user->id]) }}" method="post" class="list-buttons">--}}
+                                    {{--{{ csrf_field() }}--}}
+                                    {{--{{ method_field('DELETE') }}--}}
+                                    {{--<button type="submit" class="btn btn-default btn-sm" onclick="return confirm('¿Estás seguro que quieres borrar la inversion?');"><span class="glyphicon glyphicon-pencil"></span></button>--}}
+                                {{--</form>--}}
                             </td>
                         </tr>
 

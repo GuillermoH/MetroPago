@@ -8350,6 +8350,10 @@ button.close {
   }
 }
 
+.form-button button {
+  width: 100%;
+}
+
 .list-buttons {
   float: left;
   padding: 1px 4px;
