@@ -36,6 +36,10 @@ Route::group([
     Route::put('/user/{user}', 'AdminController@updateUser')->name('admin.updateUser');
 
     Route::post('/user/{user}/deposit', 'AdminController@addFunds')->name('admin.depositUser');
+    Route::get('/deposits', 'AdminController@listDeposits')->name('admin.listDeposits');
+    Route::get('/deposits/json', 'AdminController@getDeposits')->name('admin.getDeposits');
+    Route::put('/deposits/{deposit}', 'AdminController@updateDeposit')->name('admin.updateDeposit');
+
     /*
      * Store related routes
      */
@@ -53,6 +57,7 @@ Route::group([
     'prefix' => '/store'
 ],function() {
     Route::get('/', 'StoreController@index')->name('store.home');
+    Route::get('/sells', 'StoreController@listSells')->name('store.listSells');
 });
 
 Route::group([

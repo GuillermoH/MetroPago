@@ -78,27 +78,24 @@
                                 </div>
                             </div>
 
-                            {{--<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">--}}
-                                {{--<label for="password" class="col-md-4 control-label">Password</label>--}}
+                            <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                                <label for="type" class="col-md-4 control-label">Tipo de usuario:</label>
 
-                                {{--<div class="col-md-6">--}}
-                                    {{--<input id="password" type="password" class="form-control" name="password" required>--}}
+                                <div class="col-md-6">
+                                    <select name="type" id="type" class="form-control">
+                                        <option value="Estudiante" selected>Estudiante</option>
+                                        <option value="Profesor">Profesor</option>
+                                        <option value="Empleado">Empleado</option>
 
-                                    {{--@if ($errors->has('password'))--}}
-                                        {{--<span class="help-block">--}}
-                                        {{--<strong>{{ $errors->first('password') }}</strong>--}}
-                                    {{--</span>--}}
-                                    {{--@endif--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
+                                    </select>
 
-                            {{--<div class="form-group">--}}
-                                {{--<label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>--}}
-
-                                {{--<div class="col-md-6">--}}
-                                    {{--<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
+                                    @if ($errors->has('type'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('type') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">

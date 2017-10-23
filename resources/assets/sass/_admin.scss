@@ -3,3 +3,28 @@
     width: 100%;
   }
 }
+
+.jumbotron-primary{
+  background-color: $brand-primary;
+  color: $text-color;
+}
+
+.jumbotron-success{
+  background-color: $brand-success;
+  color: $text-color;
+}
+
+.btn-jumbo{
+  height: 150px;
+  width: 100%;
+  font-size: 80px;
+  margin-bottom: 30px;
+  span{
+    margin-top: 27.5px;
+  }
+}
+
+.deposits-table{
+  height: 400px;
+  overflow: auto;
+}

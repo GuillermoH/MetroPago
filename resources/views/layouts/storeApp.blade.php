@@ -12,6 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+
+    @yield('head')
 </head>
 <body>
     <div id="app">
@@ -28,15 +31,20 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ route('store.home') }}">
+                        {{--{{ config('app.name', 'Laravel') }}--}}
+                        <img class="navbar-logo" src="{{asset('img/logo-metropago.png')}}" alt="logo Metro Pago">
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        &nbsp;<li>
+                            <a href="{{ route('store.listSells') }}">
+                                Ventas
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -70,11 +78,32 @@
                 </div>
             </div>
         </nav>
-
+        @if (session('status'))
+            <div class="container">
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            </div>
+        @endif
+        @if (session('warning'))
+            <div class="container">
+                <div class="alert alert-warning">
+                    {{ session('warning') }}
+                </div>
+            </div>
+        @endif
+        @if (session('danger'))
+            <div class="container">
+                <div class="alert alert-danger">
+                    {{ session('danger') }}
+                </div>
+            </div>
+        @endif
         @yield('content')
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>

@@ -8354,6 +8354,37 @@ button.close {
   width: 100%;
 }
 
+.jumbotron-primary {
+  background-color: #3097D1;
+  color: #636b6f;
+}
+
+.jumbotron-success {
+  background-color: #2ab27b;
+  color: #636b6f;
+}
+
+.btn-jumbo {
+  height: 150px;
+  width: 100%;
+  font-size: 80px;
+  margin-bottom: 30px;
+}
+
+.btn-jumbo span {
+  margin-top: 27.5px;
+}
+
+.deposits-table {
+  height: 400px;
+  overflow: auto;
+}
+
+.purchases-7d-table {
+  height: 400px;
+  overflow: auto;
+}
+
 .list-buttons {
   float: left;
   padding: 1px 4px;

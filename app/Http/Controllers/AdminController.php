@@ -2,25 +2,131 @@
 
 namespace App\Http\Controllers;
 
+use App\Purchase;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use App\Deposit;
 use DateTime;
 use DateTimeZone;
+use Charts;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
     public function index(){
-//        Session::flash('status', 'Prueba de flash ');
-        return view('admin.home');
+        /*
+         * deposits, cc, cash and transfer data for deposit chart
+         */
+        $deposits = Deposit::where('created_at', '>=', Carbon::today()->subDays(6))
+            ->where('type', '=', 'Abono')
+            ->groupBy('date')
+            ->orderBy('date', 'DESC')
+            ->get(array(
+               DB::raw('Date(created_at) as date'),
+               DB::raw('SUM(amount) as amount')
+            ));
+        $creditCards = Deposit::where('created_at', '>=', Carbon::today()->subDays(6))
+            ->where('type', '=', 'TDC')
+            ->groupBy('date')
+            ->orderBy('date', 'DESC')
+            ->get(array(
+                DB::raw('Date(created_at) as date'),
+                DB::raw('SUM(amount) as amount')
+            ));
+        $cash = Deposit::where('created_at', '>=', Carbon::today()->subDays(6))
+            ->where('type', '=', 'Efectivo')
+            ->groupBy('date')
+            ->orderBy('date', 'DESC')
+            ->get(array(
+                DB::raw('Date(created_at) as date'),
+                DB::raw('SUM(amount) as amount')
+            ));
+        $transfers = Deposit::where('created_at', '>=', Carbon::today()->subDays(6))
+            ->where('type', '=', 'Transferencia')
+            ->groupBy('date')
+            ->orderBy('date', 'DESC')
+            ->get(array(
+                DB::raw('Date(created_at) as date'),
+                DB::raw('SUM(amount) as amount')
+            ));
+
+        /*
+         * purchases data from the last 7 days for line chart
+         */
+        $purchase = Purchase::where('created_at', '>=', Carbon::today()->subDays(6))
+            ->groupBy('date')
+            ->orderBy('date', 'DESC')
+            ->get(array(
+                DB::raw('Date(created_at) as date'),
+                DB::raw('SUM(amount) as amount')
+            ));
+
+        $depositsAmount = $ccAmount = $cashAmount = $transAmount = $days = $purchases = [];
+        for($i = 6; $i >= 0; $i --){
+            $depositsAmount[$i] = $deposits->where('date', '=', Carbon::today()->subDays($i)->toDateString())->first()['amount'];
+            $ccAmount[$i] = $creditCards->where('date', '=', Carbon::today()->subDays($i)->toDateString())->first()['amount'];
+            $cashAmount[$i] = $cash->where('date', '=', Carbon::today()->subDays($i)->toDateString())->first()['amount'];
+            $transAmount[$i] = $transfers->where('date', '=', Carbon::today()->subDays($i)->toDateString())->first()['amount'];
+
+            $purchases[$i] = $purchase->where('date', '=', Carbon::today()->subDays($i)->toDateString())->first()['amount'];
+
+            $days[$i] = Carbon::today()->subDays($i)->format('d/m/y');
+        };
+
+        $barChart = Charts::multi('bar', 'chartjs')
+            // Setup the chart settings
+            ->title("Depositos de la semana")
+            // colors
+            ->colors(['#6096f3', '#eb4236', '#f46e09', '#f4c009'])
+            // This defines a preset of colors already done:)
+            ->template("material")
+            // You could always set them manually
+            // ->colors(['#2196F3', '#F44336', '#FFC107'])
+            // Setup the diferent datasets (this is a multi chart)
+            ->dataset('Abono', $depositsAmount)
+            ->dataset('Efectivo', $cashAmount)
+            ->dataset('Transferencia', $transAmount)
+            ->dataset('TDC', $ccAmount)
+
+            // Setup what the values mean
+            ->labels($days);
+        $lineChart = Charts::create('line', 'chartjs')
+            ->title('Ventas de la semana')
+            ->labels($days)
+            ->values($purchases)
+            ->template('orange-material')
+            ->elementLabel('Ventas del día');
+
+        $userCount[0] = Role::with('users')->where('name','user')->get()->first()['users']->count();
+        $userCount[1] = Role::with('users')->where('name','store')->get()->first()['users']->count();
+        \Debugbar::info($userCount);
+
+        return view('admin.home', ['barChart' => $barChart,'lineChart' => $lineChart , 'userCount' => $userCount]);
     }
 
+    /*
+     * List users with data, remove and edit buttons
+     */
     public function listUsers(){
         $users = Role::with('users')->where('name','user')->get()->first()['users'];
-        return view('admin.listUsers', compact(['users']));
+        $values = [
+            $users->where('type', 'Estudiante')->count(),
+            $users->where('type', 'Profesor')->count(),
+            $users->where('type', 'Empleado')->count()
+        ];
+        \Debugbar::info($values);
+        $chart =  Charts::create('pie', 'chartjs')
+            ->title('Tipo de usuarios')
+            ->labels(['Estudiante', 'Profesor', 'Empleado'])
+            ->values($values)
+            ->dimensions(600,300)
+            ->template('orange-material')
+            ->responsive(false);
+        return view('admin.listUsers', compact(['users', 'chart']));
     }
 
     public function listStores(){
@@ -58,6 +164,7 @@ class AdminController extends Controller
         $user->c_id = $request->c_id;
         $user->uid = $request->uid;
         $user->password = bcrypt(str_random(8));
+        $user->type = $request->type;
         $user->save();
 
         $user->roles()->attach(3);
@@ -152,5 +259,31 @@ class AdminController extends Controller
 
         Session::flash('status', 'Se ha editado el negocio "'.$request->name.'" exitosamente');
         return redirect(route('admin.listStores'));
+    }
+
+    public function listDeposits(){
+        $deposits = Deposit::with('user')->get();
+        $approvedDeposits = $deposits->where('approved', '=', 1);
+        $needApprovalDeposits = $deposits->where('approved', '=', 0);
+        $deniedDeposits = $deposits->where('approved', '=', 2);
+        return view('admin.listDeposits', compact(['approvedDeposits', 'needApprovalDeposits', 'deniedDeposits']));
+    }
+
+    public function getDeposits(){
+        return Deposit::with('user')->get()->toJson();
+    }
+
+    public function updateDeposit(Request $request, Deposit $deposit){
+        $Deposit = $deposit;
+        $Deposit->approved = $request->newStatus;
+        $Deposit->save();
+
+        if ($request->newStatus == 1){
+            Session::flash('status', 'Se ha aprovado el deposito de  "'.$deposit->user->name.'" exitosamente');
+        }else if($request->newStatus == 2){
+            Session::flash('warning', 'Se ha rechazado el deposito de  "'.$deposit->user->name.'"');
+        }
+
+        return redirect()->back();
     }
 }

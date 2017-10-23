@@ -12,6 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+
+    @yield('head')
 </head>
 <body>
     <div id="app">
@@ -73,6 +76,11 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="{{ route('admin.listDeposits') }}">
+                                Dep&oacute;sitos
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -113,10 +121,25 @@
                 </div>
             </div>
         @endif
+        @if (session('warning'))
+            <div class="container">
+                <div class="alert alert-warning">
+                    {{ session('warning') }}
+                </div>
+            </div>
+        @endif
+        @if (session('danger'))
+            <div class="container">
+                <div class="alert alert-danger">
+                    {{ session('danger') }}
+                </div>
+            </div>
+        @endif
         @yield('content')
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>

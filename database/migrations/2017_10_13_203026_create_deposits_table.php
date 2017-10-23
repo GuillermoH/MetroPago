@@ -18,6 +18,7 @@ class CreateDepositsTable extends Migration
             $table->float('amount', 20, 2);
             $table->string('type');
             $table->string('reference');
+            $table->tinyInteger('approved')->default(0);
             $table->integer('user_id');
             $table->timestamps();
         });
