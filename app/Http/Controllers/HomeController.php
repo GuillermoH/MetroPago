@@ -31,16 +31,24 @@ class HomeController extends Controller
          * Cuando el usuario inicia sesion es enviado a /home, en caso de tener mas de un role este puede seleccionar a donde quiere ir
          * en caso contrario es redirigido al panel de su rol unico
          */
-        if(count($user->roles) == 1){
-            return redirect('/'.strtolower($user->roles()->first()->name));
-        }elseif(count($user->roles) > 1){
-            $rl = [];
-            foreach ($user->roles as $role){
-                array_push($rl, $role->name);
+
+        if($user->active == 1){
+            if(count($user->roles) == 1){
+                return redirect('/'.strtolower($user->roles()->first()->name));
+            }elseif(count($user->roles) > 1){
+                $rl = [];
+                foreach ($user->roles as $role){
+                    array_push($rl, $role->name);
+                }
+                return view('home', compact(['rl']));
+            }else{
+                return redirect('/');
             }
-            return view('home', compact(['rl']));
         }else{
+            Session::flush();
+            Session::flash('warning', 'El usuario ha sido deshabilitado, en caso de dudas contactar a la universidad.');
             return redirect('/');
         }
+
     }
 }

@@ -17,6 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//disable register route
+Route::match(['get', 'post'], 'register', function(){
+    return redirect('/');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group([
@@ -66,4 +71,7 @@ Route::group([
     'prefix' => '/user'
 ],function() {
     Route::get('/', 'UserController@index')->name('user.home');
+    Route::get('/addFunds', 'UserController@addFunds')->name('user.addFunds');
+    Route::get('/viewBalance', 'UserController@viewBalance')->name('user.viewBalance');
+    Route::post('/storeDeposit', 'UserController@storeDeposit')->name('user.storeDeposit');
 });

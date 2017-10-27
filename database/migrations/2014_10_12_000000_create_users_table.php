@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('type')->nullable();
             $table->string('data')->nullable();
             $table->integer('image_id')->nullable();
-            $table->string('uid')->nullable();
+            $table->boolean('active')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });

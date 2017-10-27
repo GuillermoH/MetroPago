@@ -46,6 +46,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Deposit', 'user_id');
     }
 
+    public function uid(){
+        return $this->hasMany('App\Uid', 'user_id');
+    }
+
     public function image(){
         return $this->hasOne('App\Image');
     }

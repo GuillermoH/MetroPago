@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Purchase;
+use App\Uid;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
@@ -113,6 +114,7 @@ class AdminController extends Controller
      */
     public function listUsers(){
         $users = Role::with('users')->where('name','user')->get()->first()['users'];
+        $users = $users->where('active','1');
         $values = [
             $users->where('type', 'Estudiante')->count(),
             $users->where('type', 'Profesor')->count(),
@@ -135,14 +137,19 @@ class AdminController extends Controller
     }
 
     public function userDestroy(User $user){
-        $user->delete();
-        Session::flash('status', 'Se ha eliminado el usuario exitosamente');
+        $User = $user;
+        $User->active = 0;
+        $User->save();
+//        $user->delete();
+        Session::flash('status', 'Se ha deshabilitado el usuario exitosamente');
         return redirect(route('admin.listUsers'));
     }
 
     public function storeDestroy(User $user){
-        $user->delete();
-        Session::flash('status', 'Se ha eliminado el Negocio exitosamente');
+        $User = $user;
+        $User->active = 0;
+        $User->save();
+        Session::flash('status', 'Se ha deshabilitado el Negocio exitosamente');
         return redirect(route('admin.listStores'));
     }
 
@@ -162,12 +169,18 @@ class AdminController extends Controller
         $user->email = $request->email;
         $user->username = $request->username;
         $user->c_id = $request->c_id;
-        $user->uid = $request->uid;
+
         $user->password = bcrypt(str_random(8));
         $user->type = $request->type;
         $user->save();
 
         $user->roles()->attach(3);
+        if(isset($request->uid)){
+            $uid = new Uid();
+            $uid->uid = $request->uid;
+            $uid->user_id = $user->id;
+        }
+
 
         Session::flash('status', 'Se ha creado el usuario "'.$request->name.'" exitosamente');
         return redirect(route('admin.listUsers'));
