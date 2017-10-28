@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <h3 class="text-primary">DEP&Oacute;SITOS</h3>
-                <h4 class="text-primary">Aprovados</h4>
+                <h4 class="text-primary">Aprobados</h4>
             </div>
             <div class="col-lg-6">
                 <br><br>
@@ -38,7 +38,7 @@
                             <th>Monto</th>
                             <th>Tipo</th>
                             <th>Referencia</th>
-                            <th>Aprovado</th>
+                            <th>Aprobado</th>
                             <th>Fecha</th>
                         </tr>
                         </thead>
@@ -95,7 +95,7 @@
                                         {{ csrf_field() }}
                                         {{ method_field('PUT') }}
                                         <input type="hidden" id="newStatus" name="newStatus" value="1">
-                                        <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('¿Estás seguro que la transferencia fue procesada?');" data-toggle="tooltip" title="Aprovar Transferencia"><i class="fa fa-check"></i></button>
+                                        <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('¿Estás seguro que la transferencia fue procesada?');" data-toggle="tooltip" title="Aprobar Transferencia"><i class="fa fa-check"></i></button>
                                     </form>
                                     <form action="{{ route('admin.updateDeposit', ["id" => $deposit->id]) }}" method="post" class="list-buttons">
                                         {{ csrf_field() }}
@@ -138,7 +138,7 @@
                                         {{ csrf_field() }}
                                         {{ method_field('PUT') }}
                                         <input type="hidden" id="newStatus" name="newStatus" value="1">
-                                        <button type="submit" class="btn btn-warning btn-sm" onclick="return confirm('¿Estás seguro que la transferencia fue procesada?');" data-toggle="tooltip" title="Aprovar Transferencia"><i class="fa fa-check"></i></button>
+                                        <button type="submit" class="btn btn-warning btn-sm" onclick="return confirm('¿Estás seguro que la transferencia fue procesada?');" data-toggle="tooltip" title="Aprobar Transferencia"><i class="fa fa-check"></i></button>
                                     </form>
 
                                 </td>
