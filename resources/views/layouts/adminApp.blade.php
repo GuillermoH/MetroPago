@@ -56,6 +56,11 @@
                                         Agregar
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('admin.listDisabledUsers') }}">
+                                        Usuarios deshabilitados
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -72,6 +77,11 @@
                                 <li>
                                     <a href="{{ route('admin.createStore') }}">
                                         Agregar
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.listDisabledStores') }}">
+                                        Negocios deshabilitados
                                     </a>
                                 </li>
                             </ul>
