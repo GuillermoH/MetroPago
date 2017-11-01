@@ -33,10 +33,13 @@ Route::group([
     /*
      * User related routes
      */
-    Route::get('/users', 'AdminController@listUsers')->name('admin.listUsers');
-    Route::delete('/user/{user}', 'AdminController@userDestroy')->name('admin.userDestroy');
     Route::get('/user/create', 'AdminController@createUser')->name('admin.createUser');
     Route::post('/user/store', 'AdminController@storeUser')->name('admin.storeUser');
+    Route::get('/users', 'AdminController@listUsers')->name('admin.listUsers');
+    Route::get('/disabled-users', 'AdminController@listDisabledUsers')->name('admin.listDisabledUsers');
+    Route::delete('/user/{user}', 'AdminController@userDestroy')->name('admin.userDestroy');
+    Route::post('/user/{user}', 'AdminController@userEnable')->name('admin.userEnable');
+
     Route::get('/user/{user}/edit', 'AdminController@editUser')->name('admin.editUser');
     Route::put('/user/{user}', 'AdminController@updateUser')->name('admin.updateUser');
 
@@ -48,10 +51,13 @@ Route::group([
     /*
      * Store related routes
      */
-    Route::get('/stores', 'AdminController@listStores')->name('admin.listStores');
-    Route::delete('/store/{user}', 'AdminController@storeDestroy')->name('admin.storeDestroy');
     Route::get('/store/create', 'AdminController@createStore')->name('admin.createStore');
     Route::post('/store/store', 'AdminController@storeStore')->name('admin.storeStore');
+    Route::get('/stores', 'AdminController@listStores')->name('admin.listStores');
+    Route::get('/disabled-stores', 'AdminController@listDisabledStores')->name('admin.listDisabledStores');
+    Route::delete('/store/{user}', 'AdminController@storeDestroy')->name('admin.storeDestroy');
+    Route::post('/store/{user}', 'AdminController@storeEnable')->name('admin.storeEnable');
+
     Route::get('/store/{user}/edit', 'AdminController@editStore')->name('admin.editStore');
     Route::put('/store/{user}', 'AdminController@updateStore')->name('admin.updateStore');
 });

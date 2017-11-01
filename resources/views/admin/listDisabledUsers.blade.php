@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <h3 class="text-primary">USUARIOS</h3><br>
+                <h3 class="text-primary">USUARIOS DESHABILITADOS</h3><br>
             </div>
             <div class="col-lg-6">
                 <br>
@@ -49,20 +49,12 @@
                             <td>{{ $user->c_id }} </td>
                             <td>{{ $user->username }} </td>
                             <td>{{ $user->type }}</td>
-                            <td><div class="list-buttons">
-                                    <a class="btn btn-default btn-sm" href="{{ route('admin.editUser', ["id" => $user->id]) }}" data-toggle="tooltip" title="Editar usuario"><span class="glyphicon glyphicon-pencil"></span></a>
-                                </div>
-                                <form action="{{ route('admin.userDestroy',['user'=>$user->id]) }}" method="post" class="list-buttons">
+                            <td>
+                                <form action="{{ route('admin.userEnable',['user'=>$user->id]) }}" method="post" class="list-buttons">
                                     {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro que desea deshabilitar el usuario?');" data-toggle="tooltip" title="Deshabilitar usuario"><span class="glyphicon glyphicon-remove"></span></button>
+                                    <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('¿Estás seguro que desea habilitar el usuario?');" data-toggle="tooltip" title="Habilitar usuario"><span class="glyphicon glyphicon-check"></span></button>
                                 </form>
 
-                                {{--<form action="{{ route('admin.userDestroy',['user'=>$user->id]) }}" method="post" class="list-buttons">--}}
-                                    {{--{{ csrf_field() }}--}}
-                                    {{--{{ method_field('DELETE') }}--}}
-                                    {{--<button type="submit" class="btn btn-default btn-sm" onclick="return confirm('¿Estás seguro que quieres borrar la inversion?');"><span class="glyphicon glyphicon-pencil"></span></button>--}}
-                                {{--</form>--}}
                             </td>
                         </tr>
 

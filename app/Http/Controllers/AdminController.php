@@ -131,9 +131,35 @@ class AdminController extends Controller
         return view('admin.listUsers', compact(['users', 'chart']));
     }
 
+    public function listDisabledUsers(){
+        $users = Role::with('users')->where('name','user')->get()->first()['users'];
+        $users = $users->where('active','0');
+        $values = [
+            $users->where('type', 'Estudiante')->count(),
+            $users->where('type', 'Profesor')->count(),
+            $users->where('type', 'Empleado')->count()
+        ];
+        \Debugbar::info($values);
+        $chart =  Charts::create('pie', 'chartjs')
+            ->title('Tipo de usuarios')
+            ->labels(['Estudiante', 'Profesor', 'Empleado'])
+            ->values($values)
+            ->dimensions(600,300)
+            ->template('orange-material')
+            ->responsive(false);
+        return view('admin.listDisabledUsers', compact(['users', 'chart']));
+    }
+
     public function listStores(){
         $stores = Role::with('users')->where('name','store')->get()->first()['users'];
+        $stores = $stores->where('active', '1');
         return view('admin.listStores', compact(['stores']));
+    }
+
+    public function listDisabledStores(){
+        $stores = Role::with('users')->where('name','store')->get()->first()['users'];
+        $stores = $stores->where('active', '0');
+        return view('admin.listDisabledStores', compact(['stores']));
     }
 
     public function userDestroy(User $user){
@@ -145,6 +171,14 @@ class AdminController extends Controller
         return redirect(route('admin.listUsers'));
     }
 
+    public function userEnable(User $user){
+        $User = $user;
+        $User->active = 1;
+        $User->save();
+        Session::flash('status', 'Se ha habilitado el usuario exitosamente');
+        return redirect(route('admin.listUsers'));
+    }
+
     public function storeDestroy(User $user){
         $User = $user;
         $User->active = 0;
@@ -152,6 +186,15 @@ class AdminController extends Controller
         Session::flash('status', 'Se ha deshabilitado el Negocio exitosamente');
         return redirect(route('admin.listStores'));
     }
+
+    public function storeEnable(User $user){
+        $User = $user;
+        $User->active = 1;
+        $User->save();
+        Session::flash('status', 'Se ha habilitado el usuario exitosamente');
+        return redirect(route('admin.listUsers'));
+    }
+
 
     public function createUser(){
         return view('admin.createUser');
@@ -202,7 +245,7 @@ class AdminController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->username = $request->username;
-        $user->c_id = $request->c_id;
+        $user->c_id = "J-".$request->c_id;
         $user->password = bcrypt(str_random(8));
         $user->save();
 
@@ -241,9 +284,10 @@ class AdminController extends Controller
 
         $Deposit = new Deposit();
         $Deposit->amount = $request->amount;
-        $Deposit->type = "Abono";
+        $Deposit->type = $request->type;
         $Deposit->reference = preg_replace("/[^a-zA-Z0-9]+/", "", $now->getTimestamp());
         $Deposit->user_id = $user->id;
+        $Deposit->approved = 1;
         $Deposit->save();
 
         Session::flash('status', 'Se han agregado Bs.F '.$request->amount.' exitosamente');

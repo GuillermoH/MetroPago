@@ -3,28 +3,27 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+        <h2>Usted posee distintos roles asociados a su cuenta, seleccione aquel que desee visualizar.</h2><br><br>
+        @foreach($rl as $role)
+            <div class="col-md-{{ 12/count($rl) }}">
 
-                    You are logged in as :
-                        @foreach($rl as $role)
-                            {{ $role }}
-                        @endforeach!
-
-                    @foreach($rl as $role)
-                        <a class="btn btn-primary btn-lg" href="{{ route(strtolower($role).'.home') }}">{{ $role }}</a>
-                    @endforeach
-                </div>
+                @if($role == "Admin")
+                    <a class="btn btn-success btn-jumbo-home" href="{{ route(strtolower($role).'.home') }}" title="Entrar como {{ $role }}">
+                        <i class="fa fa-sign-in"></i> Administrador
+                    </a>
+                @elseif($role == "Store")
+                    <a class="btn btn-primary btn-jumbo-home" href="{{ route(strtolower($role).'.home') }}" title="Entrar como {{ $role }}">
+                        <i class="fa fa-sign-in"></i> Negocio
+                    </a>
+                @elseif($role == "User")
+                    <a class="btn btn-warning btn-jumbo-home" href="{{ route(strtolower($role).'.home') }}" title="Entrar como {{ $role }}">
+                        <i class="fa fa-sign-in"></i> Usuario
+                    </a>
+                @endif
             </div>
-        </div>
+
+        @endforeach
     </div>
 </div>
 @endsection

@@ -83,22 +83,12 @@
 
                     <div class="panel-body">
                         <form class="form-horizontal form-button" method="POST" action="{{ route('admin.depositUser', ["id"=>$user->id]) }}">
-                        {{ csrf_field() }}
-                            <input id="amount" type="hidden" class="form-control" name="amount" value="10000" required>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Valores gen&eacute;ricos:</label>
-                                <div class="col-md-6">
-                                    <button type="submit" class="btn btn-primary" onclick="return confirm('¿Estás seguro que deseas agregar fondos a {{ $user->name }}?');">
-                                        <span class="glyphicon glyphicon-plus"></span> Bs.F 10.000
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        <form class="form-horizontal form-button" method="POST" action="{{ route('admin.depositUser', ["id"=>$user->id]) }}">
                             {{ csrf_field() }}
                             <input id="amount" type="hidden" class="form-control" name="amount" value="20000" required>
+                            <input id="type" type="hidden" class="form-control" name="type" value="Abono" required>
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
+                                <label for="amount" class="col-md-4 control-label">Abonos pred.:</label>
+                                <div class="col-md-6">
                                     <button type="submit" class="btn btn-primary" onclick="return confirm('¿Estás seguro que deseas agregar fondos a {{ $user->name }}?');">
                                         <span class="glyphicon glyphicon-plus"></span> Bs.F 20.000
                                     </button>
@@ -108,6 +98,7 @@
                         <form class="form-horizontal form-button" method="POST" action="{{ route('admin.depositUser', ["id"=>$user->id]) }}">
                             {{ csrf_field() }}
                             <input id="amount" type="hidden" class="form-control" name="amount" value="50000" required>
+                            <input id="type" type="hidden" class="form-control" name="type" value="Abono" required>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary" onclick="return confirm('¿Estás seguro que deseas agregar fondos a {{ $user->name }}?');">
@@ -122,13 +113,23 @@
                                 <label for="amount" class="col-md-4 control-label">Otro monto:</label>
 
                                 <div class="col-md-6">
-                                    <input id="amount" type="number" class="form-control" name="amount" value="" required>
+                                    <input id="amount" type="number" class="bsf_input form-control" name="amount" value="" step="0.01" required>
 
                                     @if ($errors->has('amount'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('amount') }}</strong>
                                     </span>
                                     @endif
+                                </div>
+                            </div>
+                            <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+                                <label for="amount" class="col-md-4 control-label">Tipo:</label>
+
+                                <div class="col-md-6 ">
+                                    <select name="type" id="type" class="form-control">
+                                        <option value="Efectivo">Efectivo</option>
+                                        <option value="Abono">Abono</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -145,4 +146,15 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            $('.bsf_input').change(function () {
+                this.value = parseFloat($(this).val()).toFixed(2);
+            });
+
+        });
+    </script>
 @endsection

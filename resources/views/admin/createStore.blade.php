@@ -55,7 +55,11 @@
                                 <label for="email" class="col-md-4 control-label">RIF*</label>
 
                                 <div class="col-md-6">
-                                    <input id="c_id" type="text" class="form-control" name="c_id" value="{{ old('c_id') }}" required>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">J-</span>
+                                        <input id="c_id" type="text" class="form-control" name="c_id" value="{{ old('c_id') }}" required>
+
+                                    </div>
 
                                     @if ($errors->has('c_id'))
                                         <span class="help-block">

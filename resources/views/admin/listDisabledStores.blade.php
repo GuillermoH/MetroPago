@@ -29,14 +29,10 @@
                             <td>{{ $store->email }}</td>
                             <td>{{ $store->username }} </td>
                             <td>{{ $store->c_id }}</td>
-                            <td><form action="{{ route('admin.storeDestroy',['user'=>$store->id]) }}" method="post" class="list-buttons">
+                            <td><form action="{{ route('admin.storeEnable',['user'=>$store->id]) }}" method="post" class="list-buttons">
                                     {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro que quieres deshabilitar el Negocio?');" title="Deshabilitar negocio"><span class="glyphicon glyphicon-remove"></span></button>
+                                    <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('¿Estás seguro que quieres habilitar el Negocio?');" title="Habilitar negocio"><span class="glyphicon glyphicon-check"></span></button>
                                 </form>
-                                <div class="list-buttons">
-                                    <a class="btn btn-default btn-sm" href="{{ route('admin.editStore', ["id" => $store->id]) }}"><span class="glyphicon glyphicon-pencil"></span></a>
-                                </div>
                             </td>
                         </tr>
 

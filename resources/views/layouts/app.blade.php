@@ -30,7 +30,8 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{--{{ config('app.name', 'Laravel') }}--}}
+                        <img class="navbar-logo" src="{{asset('img/logo-metropago.png')}}" alt="logo Metro Pago">
                     </a>
                 </div>
 

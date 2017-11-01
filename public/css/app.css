@@ -8412,3 +8412,14 @@ button.close {
   padding-bottom: 5px;
 }
 
+.btn-jumbo-home {
+  height: 80px;
+  width: 100%;
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.btn-jumbo-home span {
+  margin-top: 27.5px;
+}
+
