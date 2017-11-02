@@ -50,7 +50,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #dfeff3;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -157,41 +157,82 @@
             .alert-danger .alert-link {
                 color: #843534;
             }
+
+
+            #main-page{
+                /* The image used */
+                background:
+                        linear-gradient(
+                                rgba(15, 0, 17, 0.54),
+                                rgba(15, 0, 17, 0.54)
+                        ),
+                        url({{ url("/img/landing.jpg") }});
+                /*background-image: url();*/
+
+                /* Full height */
+                height: 100%;
+
+                /* Center and scale the image nicely */
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            .welcome-logo{
+                width: 30%;
+                height: auto;
+            }
+
         </style>
     </head>
     <body>
-    @if (session('warning'))
-        <div class="container">
-            <div class="alert alert-warning">
-                {{ session('warning') }}
+    <div class="container" id="main-page">
+        @if (session('warning'))
+            <div class="container">
+                <div class="alert alert-warning">
+                    {{ session('warning') }}
+                </div>
             </div>
-        </div>
-    @endif
+        @endif
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Inicio</a>
                     @else
-                        <a href="{{ url('/login') }}">Login</a>
+                        <a href="{{ url('/login') }}">Inicias sesi&oacute;n</a>
                         {{--<a href="{{ url('/register') }}">Register</a>--}}
                     @endif
                 </div>
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+                <a href="@if (Auth::check())
+                        {{ url('/home') }}
+                @else
+                    {{ url('/login') }}
+                    {{--<a href="{{ url('/register') }}">Register</a>--}}
+                @endif">
+                    <img class="welcome-logo" src="{{asset('img/logo-metropago.png')}}" alt="logo Metro Pago">
+                </a>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+
+                {{--<div class="links">--}}
+                    {{--<a href="https://laravel.com/docs">Documentation</a>--}}
+                    {{--@if (Auth::check())--}}
+                        {{--<a href="{{ url('/home') }}">Inicio</a>--}}
+                    {{--@else--}}
+                        {{--<a href="{{ url('/login') }}">Inicias sesi&oacute;n</a>--}}
+                        {{--<a href="{{ url('/register') }}">Register</a>--}}
+                    {{--@endif--}}
+                    {{--<a href="https://laracasts.com">Laracasts</a>--}}
+                    {{--<a href="https://laravel-news.com">News</a>--}}
+                    {{--<a href="https://forge.laravel.com">Forge</a>--}}
+                    {{--<a href="https://github.com/laravel/laravel">GitHub</a>--}}
+                {{--</div>--}}
             </div>
         </div>
+    </div>
+
     </body>
 </html>
