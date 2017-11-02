@@ -28,7 +28,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12" id="balanceTable">
-                    <table class="table table-striped table-hover" >
+                    <table class="table table-striped table-hover" id="balancesTable">
                         <thead>
                         <tr>
                             <th>Negocio</th>
@@ -43,11 +43,15 @@
                                 <td>
                                     @if(isset($b->business))
                                         {{ $b->business }}
+                                    @else
+                                        &nbsp;
                                     @endif
                                 </td>
                                 <td>
                                     @if(isset($b->type))
                                         {{ $b->type." = ".$b->reference }}
+                                    @else
+                                        &nbsp;
                                     @endif
                                 </td>
                                 <td class="@if($b->amount < 0)
@@ -75,8 +79,6 @@
 @section('scripts')
     <script>
         $(document).ready(function(){
-
-            console.log('11/11/2017' < '10/10/2014');
             $('[data-toggle="tooltip"]').tooltip();
 
             $("#myInput").on("keyup", function() {
@@ -94,7 +96,8 @@
     <script src="{{ asset('js/moment.min.js') }}"></script>
     <script src="{{ asset('js/daterangepicker.js') }}"></script>
     <script>
-        $(function() {
+        $(document).ready(function () {
+
 
             var date = new Date(), y = date.getFullYear(), m = date.getMonth();
             var thisMonthfirstDay = new Date(y, m, 1);
@@ -182,7 +185,7 @@
                 var input, filter, table, tr, td, i;
                 input = document.getElementById("dateInput");
                 filter = input.value;
-                table = document.getElementById("purchasesTable");
+                table = document.getElementById("balancesTable");
                 tr = table.getElementsByTagName("tr");
                 for (i = 0; i < tr.length; i++) {
                     td = tr[i].getElementsByTagName("td")[3];
@@ -198,6 +201,8 @@
                 }
 
             });
+
         });
+        $(function() {});
     </script>
 @endsection

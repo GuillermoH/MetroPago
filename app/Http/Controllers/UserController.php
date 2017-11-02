@@ -26,6 +26,7 @@ class UserController extends Controller
             ->where('user_id', '=', Auth::getUser()->id)
             ->where('purchases.created_at', '>=', Carbon::now()->subDays(6))
             ->join('users', 'purchases.store_id', '=', 'users.id')
+            ->orderBy('created_at', 'DESC')
             ->get();
 
         $availableAmount = Deposit::where('user_id', '=', Auth::getUser()->id)
@@ -55,8 +56,13 @@ class UserController extends Controller
             ->values($purchases7d)
             ->template('orange-material')
             ->elementLabel('Total por día');
+        if ($purchasesByDay->count() > 0){
+            $purchaseByDayRelation = $purchasesByDay->sum('amount') / $purchasesByDay->count();
+        }else{
+            $purchaseByDayRelation = 0;
+        }
 
-        $purchaseByDayRelation = $purchasesByDay->sum('amount') / $purchasesByDay->count();
+
 
         return view('user.home', compact(['purchases', 'availableAmount', 'purchaseByDayRelation', 'lineChart']));
     }
@@ -66,11 +72,12 @@ class UserController extends Controller
     }
 
     public function viewBalance(){
-        $deposits = Deposit::where('user_id',Auth::getUser()->id)->get();
+        $deposits = Deposit::where('user_id',Auth::getUser()->id)->orderBy('created_at', 'ASC')->get();
         $purchases = DB::table('purchases')
             ->select('purchases.id','purchases.amount', 'purchases.created_at', 'users.name')
             ->where('user_id', '=', Auth::getUser()->id)
             ->join('users', 'purchases.store_id', '=', 'users.id')
+            ->orderBy('created_at', 'ASC')
             ->get();
 
         $balance = [];
@@ -98,15 +105,16 @@ class UserController extends Controller
             ];
             array_push($balance, $object);
         }
-
         usort($balance, array($this, "cmp"));
-
+        \Debugbar::info($balance);
+        array_reverse($balance, true);
+        \Debugbar::info($balance);
         return view('user.viewBalance', compact(['balance']));
     }
 
     public function cmp($a, $b)
     {
-        return strcmp($a->created_at, $b->created_at);
+        return strcmp($b->created_at, $a->created_at);
     }
 
     public function storeDeposit(Request $request){

@@ -319,7 +319,7 @@ class AdminController extends Controller
     }
 
     public function listDeposits(){
-        $deposits = Deposit::with('user')->get();
+        $deposits = Deposit::with('user')->orderBy('created_at', 'DESC')->get();
         $approvedDeposits = $deposits->where('approved', '=', 1);
         $needApprovalDeposits = $deposits->where('approved', '=', 0);
         $deniedDeposits = $deposits->where('approved', '=', 2);
