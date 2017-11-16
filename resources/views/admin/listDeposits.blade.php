@@ -91,18 +91,24 @@
                                 <td>{{ $deposit['reference'] }}</td>
                                 <td>{{ $deposit['created_at'] }}</td>
                                 <td>
-                                    <form action="{{ route('admin.updateDeposit', ["id" => $deposit['id']]) }}" method="post" class="list-buttons">
-                                        {{ csrf_field() }}
-                                        {{ method_field('PUT') }}
-                                        <input type="hidden" id="newStatus" name="newStatus" value="1">
-                                        <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('¿Estás seguro que la transferencia fue procesada?');" data-toggle="tooltip" title="Aprobar Transferencia"><i class="fa fa-check"></i></button>
-                                    </form>
-                                    <form action="{{ route('admin.updateDeposit', ["id" => $deposit['id']]) }}" method="post" class="list-buttons">
-                                        {{ csrf_field() }}
-                                        {{ method_field('PUT') }}
-                                        <input type="hidden" id="newStatus" name="newStatus" value="2">
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro que la transferencia no se hizo?');" data-toggle="tooltip" title="Rechazar transferencia"><i class="fa fa-times"></i></button>
-                                    </form>
+                                    <div style="float: left;">
+                                        <form action="{{ route('admin.updateDeposit', ["id" => $deposit['id']]) }}" method="post" class="list-buttons">
+                                            {{ csrf_field() }}
+                                            {{ method_field('PUT') }}
+                                            <input type="hidden" id="newStatus" name="newStatus" value="1">
+                                            <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('¿Estás seguro que la transferencia fue procesada?');" data-toggle="tooltip" title="Aprobar Transferencia"><i class="fa fa-check"></i></button>
+                                        </form>
+                                    </div>
+                                    <div style="float: right; ">
+                                        <form action="{{ route('admin.updateDeposit', ["id" => $deposit['id']]) }}" method="post" class="list-buttons">
+                                            {{ csrf_field() }}
+                                            {{ method_field('PUT') }}
+                                            <input type="hidden" id="newStatus" name="newStatus" value="2">
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro que la transferencia no se hizo?');" data-toggle="tooltip" title="Rechazar transferencia"><i class="fa fa-times"></i></button>
+                                        </form>
+                                    </div>
+
+
 
                                 </td>
                             </tr>
