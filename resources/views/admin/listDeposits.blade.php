@@ -91,7 +91,7 @@
                                 <td>{{ $deposit['reference'] }}</td>
                                 <td>{{ $deposit['created_at'] }}</td>
                                 <td>
-                                    <div style="float: left;">
+                                    <div style="float: left; width: 30px">
                                         <form action="{{ route('admin.updateDeposit', ["id" => $deposit['id']]) }}" method="post" class="list-buttons">
                                             {{ csrf_field() }}
                                             {{ method_field('PUT') }}
@@ -99,7 +99,7 @@
                                             <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('¿Estás seguro que la transferencia fue procesada?');" data-toggle="tooltip" title="Aprobar Transferencia"><i class="fa fa-check"></i></button>
                                         </form>
                                     </div>
-                                    <div style="float: right; ">
+                                    <div style="float: right;width: 30px ">
                                         <form action="{{ route('admin.updateDeposit', ["id" => $deposit['id']]) }}" method="post" class="list-buttons">
                                             {{ csrf_field() }}
                                             {{ method_field('PUT') }}
