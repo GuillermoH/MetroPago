@@ -43,7 +43,7 @@
                         </tr>
                         </thead>
                         <tbody data-link="row" class="rowlink" id="myTable">
-                        {{--@foreach($approvedDeposits as $deposit)--}}
+                        @foreach($approvedDeposits as $deposit)
                             {{--<tr>--}}
                                 {{--<td>{{ $deposit->id }}</td>--}}
                                 {{--<td>{{ $deposit->user->name }}</td>--}}
@@ -54,7 +54,7 @@
                                 {{--<td>{{ $deposit->created_at }}</td>--}}
                             {{--</tr>--}}
 
-                        {{--@endforeach--}}
+                        @endforeach
 
                         </tbody>
                     </table>
