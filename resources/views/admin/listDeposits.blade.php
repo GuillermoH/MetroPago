@@ -46,12 +46,12 @@
                         @foreach($approvedDeposits as $deposit)
                             <tr>
                                 <td>{{ $deposit['id'] }}</td>
-                                {{--<td>{{ $deposit->user->name }}</td>--}}
-                                {{--<td>{{ $deposit->amount }}</td>--}}
-                                {{--<td>{{ $deposit->type }} </td>--}}
-                                {{--<td>{{ $deposit->reference }}</td>--}}
-                                {{--<td>{{ $deposit->approved }} </td>--}}
-                                {{--<td>{{ $deposit->created_at }}</td>--}}
+                                <td>{{ $deposit['user']['name'] }}</td>
+                                <td>{{ $deposit['amount'] }}</td>
+                                <td>{{ $deposit['type'] }} </td>
+                                <td>{{ $deposit['reference'] }}</td>
+                                <td>{{ $deposit['approved'] }} </td>
+                                <td>{{ $deposit['created_at'] }}</td>
                             </tr>
 
                         @endforeach
@@ -84,30 +84,30 @@
                         </tr>
                         </thead>
                         <tbody data-link="row" class="rowlink">
-                        {{--@foreach($needApprovalDeposits as $deposit)--}}
-                            {{--<tr class="warning">--}}
-                                {{--<td>{{ $deposit->user->name }}</td>--}}
-                                {{--<td>{{ $deposit->amount }}</td>--}}
-                                {{--<td>{{ $deposit->reference }}</td>--}}
-                                {{--<td>{{ $deposit->created_at }}</td>--}}
-                                {{--<td>--}}
-                                    {{--<form action="{{ route('admin.updateDeposit', ["id" => $deposit->id]) }}" method="post" class="list-buttons">--}}
-                                        {{--{{ csrf_field() }}--}}
-                                        {{--{{ method_field('PUT') }}--}}
-                                        {{--<input type="hidden" id="newStatus" name="newStatus" value="1">--}}
-                                        {{--<button type="submit" class="btn btn-success btn-sm" onclick="return confirm('¿Estás seguro que la transferencia fue procesada?');" data-toggle="tooltip" title="Aprobar Transferencia"><i class="fa fa-check"></i></button>--}}
-                                    {{--</form>--}}
-                                    {{--<form action="{{ route('admin.updateDeposit', ["id" => $deposit->id]) }}" method="post" class="list-buttons">--}}
-                                        {{--{{ csrf_field() }}--}}
-                                        {{--{{ method_field('PUT') }}--}}
-                                        {{--<input type="hidden" id="newStatus" name="newStatus" value="2">--}}
-                                        {{--<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro que la transferencia no se hizo?');" data-toggle="tooltip" title="Rechazar transferencia"><i class="fa fa-times"></i></button>--}}
-                                    {{--</form>--}}
+                        @foreach($needApprovalDeposits as $deposit)
+                            <tr class="warning">
+                                <td>{{ $deposit['user']['name'] }}</td>
+                                <td>{{ $deposit['amount'] }}</td>
+                                <td>{{ $deposit['reference'] }}</td>
+                                <td>{{ $deposit['created_at'] }}</td>
+                                <td>
+                                    <form action="{{ route('admin.updateDeposit', ["id" => $deposit['id']]) }}" method="post" class="list-buttons">
+                                        {{ csrf_field() }}
+                                        {{ method_field('PUT') }}
+                                        <input type="hidden" id="newStatus" name="newStatus" value="1">
+                                        <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('¿Estás seguro que la transferencia fue procesada?');" data-toggle="tooltip" title="Aprobar Transferencia"><i class="fa fa-check"></i></button>
+                                    </form>
+                                    <form action="{{ route('admin.updateDeposit', ["id" => $deposit['id']]) }}" method="post" class="list-buttons">
+                                        {{ csrf_field() }}
+                                        {{ method_field('PUT') }}
+                                        <input type="hidden" id="newStatus" name="newStatus" value="2">
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro que la transferencia no se hizo?');" data-toggle="tooltip" title="Rechazar transferencia"><i class="fa fa-times"></i></button>
+                                    </form>
 
-                                {{--</td>--}}
-                            {{--</tr>--}}
+                                </td>
+                            </tr>
 
-                        {{--@endforeach--}}
+                        @endforeach
 
                         </tbody>
                     </table>
@@ -127,25 +127,25 @@
                         </tr>
                         </thead>
                         <tbody data-link="row" class="rowlink">
-                        {{--@foreach($deniedDeposits as $deposit)--}}
-                            {{--<tr class="danger">--}}
-                                {{--<td>{{ $deposit->user->name }}</td>--}}
-                                {{--<td>{{ $deposit->amount }}</td>--}}
-                                {{--<td>{{ $deposit->reference }}</td>--}}
-                                {{--<td>{{ $deposit->created_at }}</td>--}}
+                        @foreach($deniedDeposits as $deposit)
+                            <tr class="danger">
+                                <td>{{ $deposit['user']['name'] }}</td>
+                                <td>{{ $deposit['amount'] }}</td>
+                                <td>{{ $deposit['reference'] }}</td>
+                                <td>{{ $deposit['created_at'] }}</td>
 
-                                {{--<td>--}}
-                                    {{--<form action="{{ route('admin.updateDeposit', ["id" => $deposit->id]) }}" method="post" class="list-buttons">--}}
-                                        {{--{{ csrf_field() }}--}}
-                                        {{--{{ method_field('PUT') }}--}}
-                                        {{--<input type="hidden" id="newStatus" name="newStatus" value="1">--}}
-                                        {{--<button type="submit" class="btn btn-warning btn-sm" onclick="return confirm('¿Estás seguro que la transferencia fue procesada?');" data-toggle="tooltip" title="Aprobar Transferencia"><i class="fa fa-check"></i></button>--}}
-                                    {{--</form>--}}
+                                <td>
+                                    <form action="{{ route('admin.updateDeposit', ["id" => $deposit['id']]) }}" method="post" class="list-buttons">
+                                        {{ csrf_field() }}
+                                        {{ method_field('PUT') }}
+                                        <input type="hidden" id="newStatus" name="newStatus" value="1">
+                                        <button type="submit" class="btn btn-warning btn-sm" onclick="return confirm('¿Estás seguro que la transferencia fue procesada?');" data-toggle="tooltip" title="Aprobar Transferencia"><i class="fa fa-check"></i></button>
+                                    </form>
 
-                                {{--</td>--}}
-                            {{--</tr>--}}
+                                </td>
+                            </tr>
 
-                        {{--@endforeach--}}
+                        @endforeach
 
                         </tbody>
                     </table>
