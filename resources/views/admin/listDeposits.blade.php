@@ -133,6 +133,7 @@
                                 <td>{{ $deposit->amount }}</td>
                                 <td>{{ $deposit->reference }}</td>
                                 <td>{{ $deposit->created_at }}</td>
+
                                 <td>
                                     <form action="{{ route('admin.updateDeposit', ["id" => $deposit->id]) }}" method="post" class="list-buttons">
                                         {{ csrf_field() }}
