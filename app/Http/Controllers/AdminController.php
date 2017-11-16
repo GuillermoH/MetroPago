@@ -323,6 +323,9 @@ class AdminController extends Controller
         $approvedDeposits = $deposits->where('approved', '=', 1);
         $needApprovalDeposits = $deposits->where('approved', '=', 0);
         $deniedDeposits = $deposits->where('approved', '=', 2);
+        \Debugbar::info($approvedDeposits);
+        \Debugbar::info($needApprovalDeposits);
+        \Debugbar::info($deniedDeposits);
         return view('admin.listDeposits', compact(['approvedDeposits', 'needApprovalDeposits', 'deniedDeposits']));
     }
 
