@@ -33,25 +33,25 @@
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>#</th>
+                            <th class=" hidden-xs">#</th>
                             <th>Usuario</th>
                             <th>Monto</th>
-                            <th>Tipo</th>
+                            <th class=" hidden-xs">Tipo</th>
                             <th>Referencia</th>
-                            <th>Aprobado</th>
-                            <th>Fecha</th>
+                            <th class=" hidden-xs">Aprobado</th>
+                            <th class=" hidden-xs">Fecha</th>
                         </tr>
                         </thead>
                         <tbody data-link="row" class="rowlink" id="myTable">
                         @foreach($approvedDeposits as $deposit)
                             <tr>
-                                <td>{{ $deposit['id'] }}</td>
+                                <td class=" hidden-xs">{{ $deposit['id'] }}</td>
                                 <td>{{ $deposit['user']['name'] }}</td>
                                 <td>{{ $deposit['amount'] }}</td>
-                                <td>{{ $deposit['type'] }} </td>
+                                <td class=" hidden-xs">{{ $deposit['type'] }} </td>
                                 <td>{{ $deposit['reference'] }}</td>
-                                <td>{{ $deposit['approved'] }} </td>
-                                <td>{{ $deposit['created_at'] }}</td>
+                                <td class=" hidden-xs">{{ $deposit['approved'] }} </td>
+                                <td class=" hidden-xs">{{ $deposit['created_at'] }}</td>
                             </tr>
 
                         @endforeach
@@ -62,7 +62,7 @@
 
             </div>
         </div>
-        <div class="row">
+        <div class="row hidden-xs">
             <div class="col-lg-6">
                 <h4 class="text-primary">Transferencias por confirmar</h4>
             </div>
@@ -79,7 +79,7 @@
                             <th>Usuario</th>
                             <th>Monto</th>
                             <th>Referencia</th>
-                            <th>Fecha</th>
+                            <th class=" hidden-xs">Fecha</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -89,7 +89,7 @@
                                 <td>{{ $deposit['user']['name'] }}</td>
                                 <td>{{ $deposit['amount'] }}</td>
                                 <td>{{ $deposit['reference'] }}</td>
-                                <td>{{ $deposit['created_at'] }}</td>
+                                <td class=" hidden-xs">{{ $deposit['created_at'] }}</td>
                                 <td>
                                     <div style="float: left; width: 30px">
                                         <form action="{{ route('admin.updateDeposit', ["id" => $deposit['id']]) }}" method="post" class="list-buttons">
@@ -99,7 +99,7 @@
                                             <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('¿Estás seguro que la transferencia fue procesada?');" data-toggle="tooltip" title="Aprobar Transferencia"><i class="fa fa-check"></i></button>
                                         </form>
                                     </div>
-                                    <div style="float: right;width: 30px ">
+                                    <div style="float: right;width: 30px " class=" hidden-xs">
                                         <form action="{{ route('admin.updateDeposit', ["id" => $deposit['id']]) }}" method="post" class="list-buttons">
                                             {{ csrf_field() }}
                                             {{ method_field('PUT') }}
@@ -128,7 +128,7 @@
                             <th>Usuario</th>
                             <th>Monto</th>
                             <th>Referencia</th>
-                            <th>Fecha</th>
+                            <th class=" hidden-xs">Fecha</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -138,7 +138,7 @@
                                 <td>{{ $deposit['user']['name'] }}</td>
                                 <td>{{ $deposit['amount'] }}</td>
                                 <td>{{ $deposit['reference'] }}</td>
-                                <td>{{ $deposit['created_at'] }}</td>
+                                <td class=" hidden-xs">{{ $deposit['created_at'] }}</td>
 
                                 <td>
                                     <form action="{{ route('admin.updateDeposit', ["id" => $deposit['id']]) }}" method="post" class="list-buttons">

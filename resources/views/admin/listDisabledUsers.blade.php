@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<section id="chart" class="top-break">
+<section id="chart" class="top-break hidden-xs">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -31,12 +31,12 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>#</th>
+                        <th class=" hidden-xs">#</th>
                         <th>Nombre</th>
-                        <th>E-mail</th>
-                        <th>C.I</th>
+                        <th class=" hidden-xs">E-mail</th>
+                        <th class=" hidden-xs">C.I</th>
                         <th># de Carnet</th>
-                        <th>Tipo</th>
+                        <th class=" hidden-xs">Tipo</th>
                         <th></th>
                     </tr>
                     </thead>

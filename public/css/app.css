@@ -8375,6 +8375,17 @@ button.close {
   margin-top: 27.5px;
 }
 
+@media screen and (max-width: 450px) {
+  .btn-jumbo {
+    height: 80px;
+    font-size: 40px;
+  }
+
+  .btn-jumbo span {
+    margin-top: 13.75px;
+  }
+}
+
 .deposits-table {
   height: 400px;
   overflow: auto;
@@ -8390,6 +8401,17 @@ button.close {
   width: 100%;
   font-size: 60px;
   margin-bottom: 30px;
+}
+
+@media screen and (max-width: 450px) {
+  .btn-jumbo-usr {
+    height: 80px;
+    font-size: 30px;
+  }
+
+  .btn-jumbo-usr span {
+    margin-top: 5px;
+  }
 }
 
 #balanceTable {
@@ -8421,5 +8443,26 @@ button.close {
 
 .btn-jumbo-home span {
   margin-top: 27.5px;
+}
+
+@media screen and (max-width: 450px) {
+  .btn-jumbo-home {
+    height: 60px;
+    font-size: 30px;
+  }
+
+  .btn-jumbo-home span {
+    margin-top: 5px;
+  }
+}
+
+.table {
+  margin: 0px !important;
+  table-layout: fixed;
+}
+
+.table td {
+  padding-bottom: 0px !important;
+  overflow: hidden;
 }
 

@@ -31,7 +31,7 @@
                     <table class="table table-striped table-hover" id="purchasesTable">
                         <thead>
                         <tr>
-                            <th>#</th>
+                            <th class="hidden-xs">#</th>
                             <th>Nombre del cliente</th>
                             <th>Monto</th>
                             <th>Fecha</th>
@@ -40,7 +40,7 @@
                         <tbody data-link="row" class="rowlink" id="myTable">
                         @foreach($purchases as $purchase)
                             <tr>
-                                <td>{{ $purchase->id }}</td>
+                                <td class="hidden-xs">{{ $purchase->id }}</td>
                                 <td>{{ $purchase->user->name }}</td>
                                 <td>{{ number_format($purchase->amount, 2)  }}</td>
                                 <td>{{ \Carbon\Carbon::parse($purchase->created_at)->format('d/m/y h:i:s A') }} </td>

@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>MetroPago</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -200,7 +200,7 @@
                     @if (Auth::check())
                         <a href="{{ url('/home') }}">Inicio</a>
                     @else
-                        <a href="{{ url('/login') }}">Inicias sesi&oacute;n</a>
+                        <a href="{{ url('/login') }}">Iniciar sesi&oacute;n</a>
                         {{--<a href="{{ url('/register') }}">Register</a>--}}
                     @endif
                 </div>

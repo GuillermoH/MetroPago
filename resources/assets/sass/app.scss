@@ -41,4 +41,20 @@
   span{
     margin-top: 27.5px;
   }
+  @media screen and (max-width: 450px){
+    height: 60px;
+    font-size: 30px;
+    span{
+      margin-top: 5px;
+    }
+  }
+}
+
+.table{
+  margin:0px !important;
+  table-layout:fixed;
+}
+.table td{
+  padding-bottom: 0px !important;
+  overflow:hidden;
 }

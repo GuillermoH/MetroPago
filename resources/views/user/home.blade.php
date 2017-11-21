@@ -21,10 +21,10 @@
                 <div class="col-md-6">
                     <div class="col-md-12 top-break">
                         <button class="btn btn-primary btn-jumbo-usr"  title="Total de dinero disponible">
-                            <span class="col-sm-3">
-                                <i class="fa fa-money"></i> &nbsp;=
+                            <span class="col-sm-3 col-xs-2">
+                                <i class="fa fa-money"></i><span class="hidden-xs"> &nbsp;=</span>
                             </span>
-                            <span class="col-sm-9" >
+                            <span class="col-sm-9 col-xs-10" >
                                 <span>{{ number_format($availableAmount,1, ',', '.') }}</span>
                             </span>
 
@@ -32,10 +32,10 @@
                     </div>
                     <div class="col-md-12">
                         <button class="btn btn-danger btn-jumbo-usr" href="" title="s">
-                            <span class="col-sm-3">
-                                <i class="fa fa-money"></i> &nbsp;=
+                            <span class="col-sm-3 col-xs-2">
+                                <i class="fa fa-money"></i><span class="hidden-xs"> &nbsp;=</span>
                             </span>
-                            <span class="col-sm-9" >
+                            <span class="col-sm-9 col-xs-10" >
                                 <span>{{ number_format($purchaseByDayRelation, 1, ',', '.') }} <sub><sup>xD&iacute;a</sup></sub></span>
                             </span>
                         </button>
@@ -59,7 +59,7 @@
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>#</th>
+                            <th class="hidden-xs">#</th>
                             <th>Negocio</th>
                             <th>Monto</th>
                             <th>Fecha</th>
@@ -68,7 +68,7 @@
                         <tbody data-link="row" class="rowlink" id="myTable">
                         @foreach($purchases as $purchase)
                             <tr>
-                                <td>{{ $purchase->id }}</td>
+                                <td class="hidden-xs">{{ $purchase->id }}</td>
                                 <td>{{ $purchase->name }}</td>
                                 <td>{{ number_format($purchase->amount, 2)  }}</td>
                                 <td>{{ \Carbon\Carbon::parse($purchase->created_at)->format('d/m/y h:i:s A') }} </td>

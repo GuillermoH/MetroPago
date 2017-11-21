@@ -57,11 +57,11 @@
                                         Con tarjeta de Cr&eacute;dito
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="">
-                                        Status de transacciones
-                                    </a>
-                                </li>
+                                {{--<li>--}}
+                                    {{--<a href="">--}}
+                                        {{--Status de transacciones--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
                             </ul>
                         </li>
                         <li><a href="{{ route('user.viewBalance') }}">Balances</a></li>

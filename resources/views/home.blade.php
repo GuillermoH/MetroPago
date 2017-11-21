@@ -4,7 +4,9 @@
 <div class="container">
     <div class="row">
 
-        <h2>Usted posee distintos roles asociados a su cuenta, seleccione aquel que desee visualizar.</h2><br><br>
+        <div class="col-md-12">
+            <h2>Usted posee distintos roles asociados a su cuenta, seleccione aquel que desee visualizar.</h2><br><br>
+        </div>
         @foreach($rl as $role)
             <div class="col-md-{{ 12/count($rl) }}">
 

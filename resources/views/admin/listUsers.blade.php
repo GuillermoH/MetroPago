@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<section id="chart" class="top-break">
+<section id="chart" class="top-break hidden-xs">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -31,24 +31,24 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>#</th>
+                        <th class=" hidden-xs">#</th>
                         <th>Nombre</th>
-                        <th>E-mail</th>
-                        <th>C.I</th>
+                        <th class=" hidden-xs">E-mail</th>
+                        <th class=" hidden-xs">C.I</th>
                         <th># de Carnet</th>
-                        <th>Tipo</th>
+                        <th class=" hidden-xs">Tipo</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody data-link="row" class="rowlink" id="myTable">
                     @foreach($users as $user)
                         <tr>
-                            <td>{{ $user->id }}</td>
+                            <td class=" hidden-xs">{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->c_id }} </td>
+                            <td class=" hidden-xs">{{ $user->email }}</td>
+                            <td class=" hidden-xs">{{ $user->c_id }} </td>
                             <td>{{ $user->username }} </td>
-                            <td>{{ $user->type }}</td>
+                            <td class=" hidden-xs">{{ $user->type }}</td>
                             <td><div class="list-buttons">
                                     <a class="btn btn-default btn-sm" href="{{ route('admin.editUser', ["id" => $user->id]) }}" data-toggle="tooltip" title="Editar usuario"><span class="glyphicon glyphicon-pencil"></span></a>
                                 </div>

@@ -22,6 +22,14 @@
   span{
     margin-top: 27.5px;
   }
+
+  @media screen and (max-width: 450px){
+    height: 80px;
+    font-size: 40px;
+    span{
+      margin-top: 13.75px;
+    }
+  }
 }
 
 .deposits-table{

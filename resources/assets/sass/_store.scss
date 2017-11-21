@@ -8,6 +8,13 @@
   width: 100%;
   font-size: 60px;
   margin-bottom: 30px;
+  @media screen and (max-width: 450px){
+    height: 80px;
+    font-size: 30px;
+    span{
+      margin-top: 5px;
+    }
+  }
   //span{
   //  margin-top: 30px;
   //  font-size: 60px;

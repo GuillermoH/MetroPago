@@ -13,22 +13,22 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>#</th>
+                        <th class=" hidden-xs">#</th>
                         <th>Nombre</th>
-                        <th>E-mail</th>
+                        <th class=" hidden-xs">E-mail</th>
                         <th>usuario</th>
-                        <th>RIF</th>
+                        <th class=" hidden-xs">RIF</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody data-link="row" class="rowlink">
                     @foreach($stores as $store)
                         <tr>
-                            <td>{{ $store->id }}</td>
+                            <td class=" hidden-xs">{{ $store->id }}</td>
                             <td>{{ $store->name }}</td>
-                            <td>{{ $store->email }}</td>
+                            <td class=" hidden-xs">{{ $store->email }}</td>
                             <td>{{ $store->username }} </td>
-                            <td>{{ $store->c_id }}</td>
+                            <td class=" hidden-xs">{{ $store->c_id }}</td>
                             <td><form action="{{ route('admin.storeDestroy',['user'=>$store->id]) }}" method="post" class="list-buttons">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
