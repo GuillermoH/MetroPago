@@ -73,13 +73,13 @@ return [
     'assets' => [
         'global' => [
             'scripts' => [
-                'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js',
+//                'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js',
             ],
         ],
 
         'canvas-gauges' => [
             'scripts' => [
-                'https://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.2/all/gauge.min.js',
+                '/js/gauge.min.js',
             ],
         ],
 
@@ -94,7 +94,7 @@ return [
 
         'chartjs' => [
             'scripts' => [
-                'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js',
+                '/js/Chart.min.js',
             ],
         ],
 
