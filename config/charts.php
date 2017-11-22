@@ -109,7 +109,7 @@ return [
             'scripts' => [
 //                '/charts/jsapi.js',
 //                '/charts/loader.js',
-                "google.charts.load('current', {'packages':['corechart', 'gauge', 'geochart', 'bar', 'line']})",
+//                "google.charts.load('current', {'packages':['corechart', 'gauge', 'geochart', 'bar', 'line']})",
             ],
         ],
 
